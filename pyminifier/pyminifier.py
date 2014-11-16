@@ -75,12 +75,14 @@ from . import compression
 
 py3 = False
 lzma = False
-if sys.version_info.major == 3:
-    py3 = True
-    try:
-        import lzma
-    except ImportError:
-        pass
+
+if not isinstance(sys.version_info.major, tuple):
+   if sys.version_info.major == 3:
+      py3 = True
+      try:
+         import lzma
+       except ImportError:
+         pass
 
 # Regexes
 multiline_indicator = re.compile('\\\\(\s*#.*)?\n')
